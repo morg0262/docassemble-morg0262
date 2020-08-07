@@ -1,0 +1,134 @@
+---
+objects:
+  - endpoint: DADict
+---
+features:
+  css: experiment.css
+  debug: True
+  hide standard menu: False
+---
+objects:
+  - KMlogo: DAStaticFile.using(filename='kmlogo.png')
+---
+mandatory: True
+code: |
+  set_parts(logo='<img src="' + KMlogo.url_for() + '" style="height: 50px;">')
+---
+# My Application
+mandatory: true
+question: |
+  Welcome
+subquestion: |
+  This application will complete a Federal Court {Form 1} Document for you. Through the ease of simply inputting your information in these forms, the application will automatically fill out the document with your relevant information.
+  
+  Disclaimer: This form must be checked be a {lawyer} and does not provide legitimate legal advice 
+  
+terms:
+  lawyer: |
+    A lawyer is a person who will charge you too much for something you could figure out yourself because they have a piece of paper.
+  Form 1:
+    The Federal Court Form 1 Document is a form you must fill out prior to initiating a cause of action. It lays out who the parties are, who filled out the form, the respective contact details and other relevant information.
+
+buttons:
+  - I'm done: exit
+    url: https://students.flinders.edu.au/bgl
+  - Continue: continue
+---
+mandatory: true
+code: |
+  if chosen_court == "Federal Court" or chosen_court == "Federal Circuit Court":
+    endpoint['fed_court_selected']
+  else:
+    endpoint['all_done'] 
+---
+question: |
+  For which court is this form to be completed? 
+field: chosen_court
+dropdown:
+    - Supreme Court
+    - District Court
+    - Magistrates Court
+    - Federal Court
+    - Federal Circuit Court
+---
+question: |
+  Please enter your details here
+subquestion: |
+  These details will fill out your Form 1 Document
+fields:
+  - First Name: KMfirstname
+  - Last Name: KMlastname
+  - Age: KMage
+  - Law Firm: KMlawfirm
+  - Telephone: KMnumber
+  - Email: KMemail
+  - Fax: KMfax
+  - Address for Service: KMaddress
+  - Applicant Name: KMapplicantname
+  - Respondent Name: KMrespondentname
+  - Division: KMdivision
+    choices:
+      - Criminal
+      - Employment
+      - Corporations
+      - General
+  - State: KMstate
+    choices:
+      - SA
+      - VIC
+      - NSW
+      - NT
+      - ACT
+      - WA
+      - QLD
+      - TAS
+---
+event: endpoint['all_done']
+question: |
+  Thank you for using the application!
+subquestion: |
+  This Form 1 filler application will only prepare documents for use in the Federal Court of Australia and the Federal Circuit Court of Australia
+buttons:
+  - I'm done: exit
+    url: https://students.flinders.edu.au/bgl
+  - Restart: restart 
+---
+event: endpoint['fed_court_selected']
+question: |
+ These are your details
+subquestion: |
+  If correct, please review and download your filled Form 1 Document
+  
+  Column1|Column2
+  -------|-------
+  First Name|${ KMfirstname }
+  Last Name|${ KMlastname }
+  Age | ${ KMage }
+  Law Firm | ${ KMlawfirm }
+  Telephone | ${ KMnumber }
+  Email | ${ KMemail }
+  Fax | ${ KMfax }
+  Address for Service | ${ KMaddress }
+  Applicant Name | ${ KMapplicantname }
+  Respondent Name | ${ KMrespondentname }
+  Division | ${ KMdivision }
+  State | ${ KMstate }
+  
+  Down below you will find an email e you may insert your email to have the document sent to yourself if you wish.
+  Down below you will find an {email} box where you may insert your email to have the document sent to yourself if you wish.
+  
+terms:
+  email: an email is like a letter but instead of being sent to your door, it is sent to a mailbox on the internet.
+  
+attachment:
+  name: Your Form 1 Document
+  filename: form1document
+  docx template file: form1template.docx
+  valid formats:
+    - pdf
+
+buttons:
+  - Exit: exit
+    url: https://www.fedcourt.gov.au/
+  - Restart: restart
+---

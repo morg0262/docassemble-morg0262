@@ -1,0 +1,35 @@
+.navbar{
+
+    background-color: rgb(128,0,0) !important;
+}
+
+
+.navbar .nav-item a{
+    color: rgb(0,0,0) !important;
+}
+
+.navbar .dropdown-menu{
+    background-color: rgba(128,0,0,0.6);
+}
+.dropdown-item:hover{
+    background-color: rgba(255,211,0,.2);
+}
+
+.btn-primary{
+  color: rgb(255,255,255);
+  background-color: rgb(0, 45, 97);
+  border-color: rgb(0,0,0);
+}
+
+.btn-primary:hover{
+  color: rgb(0,0,0);
+  background-color: rgba(151,201,255,0.3);
+  border-color: rgb(0,0,0);
+}
+
+.MJFheader{
+    color: rgb(255,0,0);
+    font-size: 1.2em;
+    font-weight: bolder;
+    text-shadow: 2px 4px 10px tomato;
+}
