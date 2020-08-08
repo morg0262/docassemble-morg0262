@@ -21,7 +21,7 @@ question: |
 subquestion: |
   This application will complete a Federal Court {Form 1} Document for you. Through the ease of simply inputting your information in these forms, the application will automatically fill out the document with your relevant information.
   
-  Disclaimer: This form must be checked be a {lawyer} and does not provide legitimate legal advice 
+  Disclaimer: This form must be checked by a {lawyer} and does not provide legitimate legal advice 
   
 terms:
   lawyer: |
@@ -115,7 +115,6 @@ subquestion: |
   State | ${ KMstate }
   Date | ${ today() }
   
-  Down below you will find an email e you may insert your email to have the document sent to yourself if you wish.
   Down below you will find an {email} box where you may insert your email to have the document sent to yourself if you wish.
   
 terms:
