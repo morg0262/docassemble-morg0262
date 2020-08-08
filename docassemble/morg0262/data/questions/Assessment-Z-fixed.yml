@@ -113,6 +113,7 @@ subquestion: |
   Respondent Name | ${ KMrespondentname }
   Division | ${ KMdivision }
   State | ${ KMstate }
+  Date | ${ today() }
   
   Down below you will find an email e you may insert your email to have the document sent to yourself if you wish.
   Down below you will find an {email} box where you may insert your email to have the document sent to yourself if you wish.
